@@ -1,0 +1,13 @@
+# depslib dependency file v1.0
+1528036786 source:c:\users\florin\desktop\greedy\coin_change.c
+	"coin_change.h"
+	<stdio.h>
+	<stdlib.h>
+
+1528034309 c:\users\florin\desktop\greedy\coin_change.h
+
+1528036190 source:c:\users\florin\desktop\greedy\main.c
+	<stdio.h>
+	<stdlib.h>
+	"coin_change.h"
+
