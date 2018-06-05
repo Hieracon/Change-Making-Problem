@@ -1,0 +1,268 @@
+\documentclass{report}
+\usepackage[utf8]{inputenc}
+
+\title{The Change-Making Problem}
+\author{Belu Florinel Gabriel \\ CR 1.1A (Hobbits)}
+\date{Year 2017 - 2018 \\ Semester II}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+\usepackage{algorithm2e}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\chapter{Problem Statement:}
+The Change-Making Problem : when given an amount of money calculate the least number of coins of given denominations needed to make that amount.
+
+\chapter{Algorithms:}
+I solved the change-making problem by implementing two diffrent algorithms.
+
+\section*{The Backtracking Method}
+The algorithm uses a number of functions that have been placed into a library that represent the process they are used for:
+\begin{itemize}
+    \item Functions used for reading the denominations.
+    \item Function used to calculate the number of coins to make an amount.
+    \item Function to display the results.
+\end{itemize}
+
+\subsection*{Input}
+The input represents the number of coin types (example : 4),the denominations (example : 1,2,5,10) and the amount (example : 25).After that you only have to enter the amout if you want to continue the process.When you are done you can enter -1 and the process will stop.
+
+\newpage
+\subsection*{Output}
+In the output you are show the number of coins of eache denomination neede to make the amount.
+\\
+Example:
+\\
+The number of coin types is:4
+\\
+The 1 denomination is:1
+\\
+The 2 denomination is:2
+\\
+The 3 denomination is:5
+\\
+The 4 denomination is:10
+\\
+Please enter an integer amount between 0-10000 or -1 to exit:25
+\\
+0 number of 1 denomination coins used
+\\
+0 number of 2 denomination coins used
+\\
+1 number of 5 denomination coins used
+\\
+2 number of 10 denomination coins used
+
+
+\subsection*{Determinating the number of coins.}
+This function is used to calculate the number of coins after the user has given the number of coin types,the denominations and the amount of money.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The amount of money,an iterator,the denominations and the number of coins.}
+    \KwResult{The number of coins needed.}
+    \eIf{the amount of money is less than the samllest denomination} {
+        \Return the number of coins\;
+        }{
+            \eIf{the amount of money == denomination[iterator]}
+            {
+                \Return number of coins increased by 1 \;
+            }{
+                \eIf{the amount of money is greater than denomination[iterator] }{
+                increase the number of coins count by 1;
+                \\
+                \Return this function with amount - denomination[iterator]\;
+                }{
+                    \Return this fuction with iterator - 1\;
+                }
+                }
+        }
+        
+    \caption{Determinating the number of coins.}
+\end{algorithm}
+
+\newpage
+\subsection*{Display the results.}
+This function asks the user to enter a number that represents the amount of money.If the number is compatible with some conditions then the fucntion will call the recursive function and display the results,otherwise it will ask the user to indtroduce another amount of money or to introduce -1 to exit.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The denominations,an iterator,the number of coin types and the number of coins.}
+    \KwResult{The display of the number of coins needed.}
+    {Get the amount of money from the user.\;}
+    \While{The user doesn't introduce -1.} {
+        \eIf{The user introduces an accepted amount of money.} {
+            call the recursive function and display the results\;
+        }{
+            Ask the user again for an amount of money.\;
+        }
+    }
+    \caption{Display the results.}
+\end{algorithm}
+
+\subsection*{Reading the denominations.}
+This function asks the user to introduce a number of denominations equal with the number of coin types and saves them in a pointer to a vector.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The denominations and the number of coin types.}
+    \KwResult{Gets all the denominations from the user.}
+    \For{Each coin type.}{
+    Read the denomination from the user.\;}
+    \caption{Reading the denominations.}
+\end{algorithm}
+
+\newpage
+\subsection*{Reading the number of coin types.}
+This function asks the user to introduce a number that represents the number of coin types.It save it in an auxiliary that is then returned.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{No parametres.}
+    \KwResult{Returns the number of coins types given by the user.}
+    {Ask the user to introduce the number of coin types;}
+    \\
+    {Save it in an auxiliary;}
+    \\
+    \Return the auxiliary;
+    \caption{Reading the number of coin types.}
+\end{algorithm}
+
+\subsection*{Main.c}
+This function is used to initialise and declare the important parameters and to call the functions.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The declaration of the parameters used for the functions calls.}
+    {Initializing the parameters;}
+    \\
+    {Making the functions calls;}
+    \\
+    {Free the pointers used;}
+    \caption{Main.c.}
+\end{algorithm}
+
+\subsection*{}
+\section*{The Greedy Algorithm Method}
+The algorithm uses a number of functions that have been placed into a library that represent the process they are used for:
+\begin{itemize}
+    \item Functions used for reading the denominations.
+    \item Function used to calculate the number of coins to make an amount and to display the results.
+\end{itemize}
+
+\subsection*{Input}
+The input represents the number of coin types (example : 4),the denominations (example : 3,4,6,9) and the amount (example : 88).After that you only have to enter the amout if you want to continue the process.When you are done you can enter -1 and the process will stop.
+
+\newpage
+\subsection*{Output}
+In the output you are show the number of coins of eache denomination neede to make the amount.
+\\
+Example:
+\\
+The number of coin types is:4
+\\
+The 1 denomination is:3
+\\
+The 2 denomination is:4
+\\
+The 3 denomination is:6
+\\
+The 4 denomination is:9
+\\
+Please enter an integer amount between 0-10000 or -1 to exit:88
+\\
+9 number of 9 denomination coins used
+\\
+1 number of 6 denomination coins used
+\\
+0 number of 4 denomination coins used
+\\
+1 number of 3 denomination coins used
+
+\subsection*{Reading the denominations.}
+This function asks the user to introduce a number of denominations equal with the number of coin types and saves them in a pointer to a vector.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The denominations and the number of coin types.}
+    \KwResult{Gets all the denominations from the user.}
+    \For{Each coin type.}{
+    Read the denomination from the user.\;}
+    \caption{Reading the denominations.}
+\end{algorithm}
+\subsection*{}
+
+\subsection*{Reading the number of coin types.}
+This function asks the user to introduce a number that represents the number of coin types.It save it in an auxiliary that is then returned.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{No parametres.}
+    \KwResult{Returns the number of coins types given by the user.}
+    {Ask the user to introduce the number of coin types;}
+    \\
+    {Save it in an auxiliary;}
+    \\
+    \Return the auxiliary;
+    \caption{Reading the number of coin types.}
+\end{algorithm}
+
+\subsection*{Display and calculate the results.}
+This function asks the user to enter a number that represents the amount of money.If the number is compatible with some conditions then the fucntion will determine the number of coins using a simple while that reduces the amount given by the user by the biggest denomitaion possible until it reaches 0 and displays the results,otherwise it will ask the user to indtroduce another amount of money or to introduce -1 to exit.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The denominations,the counter for the number of coin types and the number of coins.}
+    \KwResult{The display and the calculation of the number of coins needed.}
+    {Get the amount of money from the user.\;}
+    \While{The user doesn't introduce -1.} {
+        \eIf{The user introduces an accepted amount of money.} {
+            \For{Each denomination in descending order}{
+                \While{The amount is greater than denominations[iterator]}{
+                Reduce the amount by denominations[iterator]\;
+                }
+                {Display the results\;}
+            }
+        }{
+            Ask the user again for an amount of money.\;
+        }
+    }
+    \caption{Display and calculate the results.}
+\end{algorithm}
+
+\subsection*{Main.c}
+This function is used to initialise and delcare the important parameters and to call the functions.
+\subsection*{}
+
+\begin{algorithm}[H]
+    \KwData{The declaration of the parameters used for the functions calls.}
+    {Initializing the parameters;}
+    \\
+    {Making the functions calls;}
+    \\
+    {Free the pointers used;}
+    \caption{Main.c.}
+\end{algorithm}
+
+
+\begin{thebibliography}{9}
+\bibitem{GeeksForGeeks}
+GeeksForGeeks
+\\\texttt{https://www.geeksforgeeks.org/}
+
+\bibitem{stackoverflow}
+Stack Overflow
+\\\texttt{https://stackoverflow.com/}
+
+\bibitem{github}
+Git Hub
+\\\texttt{https://github.com/}
+
+\end{thebibliography}
+
+\end{document}
