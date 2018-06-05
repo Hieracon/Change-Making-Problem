@@ -1,0 +1,16 @@
+# depslib dependency file v1.0
+1527886750 source:c:\users\florin\desktop\test\main.c
+	<stdio.h>
+
+1528034967 source:c:\users\florin\desktop\backtracking\main.c
+	<stdio.h>
+	<stdlib.h>
+	"coin_change.h"
+
+1528034902 c:\users\florin\desktop\backtracking\coin_change.h
+
+1528035797 source:c:\users\florin\desktop\backtracking\coin_change.c
+	<stdio.h>
+	<stdlib.h>
+	"coin_change.h"
+
